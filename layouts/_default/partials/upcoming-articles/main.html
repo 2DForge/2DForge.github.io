@@ -1,0 +1,29 @@
+{{ if .Site.Params.homepage.showUpcoming | default false }}
+  <section class="mt-12">
+    <h2 class="text-2xl font-bold mb-6 text-neutral-800 dark:text-neutral-100">
+      {{ i18n "homepage.upcoming_articles" | default "Prochainement" }}
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {{ range where .Site.RegularPages "Params.upcoming" true }}
+        <div class="border border-neutral-200 dark:border-neutral-800 rounded-lg p-5 bg-neutral-50/50 dark:bg-neutral-900/50 relative overflow-hidden">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="inline-block w-2 h-2 rounded-full bg-primary-500 animate-pulse"></span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-primary-600 dark:text-primary-400">
+              À venir
+            </span>
+          </div>
+          <h3 class="text-lg font-bold my-1 text-neutral-800 dark:text-neutral-100">
+            {{ .Title }}
+          </h3>
+          {{ with .Summary }}
+            <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-2 line-clamp-2">
+              {{ . }}
+            </p>
+          {{ end }}
+        </div>
+      {{ else }}
+        <p class="text-sm text-neutral-500 italic">Aucun article prévu pour le moment.</p>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}
