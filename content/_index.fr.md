@@ -7,7 +7,8 @@ feature= "img/feature.webp"
 +++
 
 {{<lead>}}
-J'y partage mes retours d'expérience et projets  . Des conseils pratiques pour connecter vos outils, automatiser vos rendus et fluidifier le travail des équipes.
+J'y partage mes retours d'expérience et projets. Beaucoup sont autour de Toon Boom Harmony
+Des conseils pratiques pour connecter vos outils, automatiser vos rendus et fluidifier le travail des équipes.
 {{</lead>}}
 
 {{< button pageRef="contact" >}}
