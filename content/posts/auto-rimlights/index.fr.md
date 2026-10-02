@@ -3,7 +3,7 @@ date : '2026-08-26T17:09:09+02:00'
 draft : false
 title : 'Automatiser les rimlights sur Toon Boom Harmony : TPLs + Master Controller + expressions + Scripts'
 tags : ['Toon Boom', 'Harmony', 'Scripting']
-categories : ["Compositing", '2D']
+categories : ["Compositing"]
 keywords : ['compositing', 'animation 2D', 'scripting', 'toon boom', 'harmony', 'rimlight', 'master controller', 'script', 'scripting']
 description : 'Découvrez comment automatiser la création et le suivi des rimlights en compositing 2D avec Toon Boom Harmony grâce aux TPLs, expressions, master controller et script.'
 summary : 'Retour d’expérience sur l’automatisation de 24 000+ rimlights dans Toon Boom Harmony pour une série TV 2D : gain de productivité par script + TPL, Master Controller et expressions.'
@@ -50,7 +50,7 @@ Schéma de fonctionnement simplifié
 
 ![Schéma du pipeline d'automatisation des rimlights dans Toon Boom Harmony](schema2.svg)
 
-### RIMLIGHT CTRL (*TPL*)
+### RIMLIGHT CTRL
 TPL principal de l'automatisation, il contenait un node *Peg* dont les valeurs position x/y était contrôlées via un *Master-Controller* qui permettait de choisir à la fois l'orientation et de contôler la taille de la *rimlight*. Par défaut il fallait placer le curseur sur le bord du *Master-Controller* pour obtenir une taille normée et cohérente. En rapprochant le curseur près du centre, on pouvait diminuer la taille de la *rimlight* ce qui fut utiliser occasionnellement.
 Le second node important était le node *HighLight* qui gérait la colorimétrie pour toutes les *rimlights* des assets, en liant les fonctions *Radius*, *color Red* / *Green* / *Blue* / *Alpha*, *Intensity* au node *HighLight* de chaque asset.
 
@@ -65,7 +65,7 @@ La valeur de **{asset}** correspond au nom de l'asset (exemple : mt000-ch-sandri
 
 ####  Expression de position.X (*Expr_{asset}_offsetX*)
 ```javascript
-sNode = {asset} // (string) fourni par script
+sNode = {asset} // string fourni par script
 scale = value( sNode + "_P_Scale_y", currentFrame)
 scale = Math.atan(scale) / 3.3
 angl = value("OFFSET_MASTER_Pos_x")
@@ -73,7 +73,7 @@ value = Math.abs(scale) * angl
 ```
 ####  Expression de position.Y (*Expr_{asset}_offsetY*)
 ```javascript
-sNode = {asset} // (string) fourni par script
+sNode = {asset} // string fourni par script
 scale = value( sNode + "_P_Scale_y", currentFrame )
 scale = Math.atan(scale) / 4
 angl = value("OFFSET_MASTER_Pos_y")
@@ -107,7 +107,7 @@ Le paramètre ***currentFrame*** permettait d'adapter dynamiquement la taille de
 
 [Ces expressions étaient reliées aux valeurs X/Y du node *Auto Offset Peg* du TPL RIMLIGHT_G](#node-peg-auto-offset)
 
-### RIMLIGHT_G (*TPL*)
+### RIMLIGHT_G
 Ce TPL (node groupe) appliqué à chaque asset contenait tous les nodes nécessaires pour l'effet rimlight : node  *Apply-Peg-Transformation* + node Peg [*Auto Offset*](#node-peg-auto-offset), node [*Highlight_BODY*](#node-highlight) et une multitude d'autres nodes pour assurer des fonctions supplémentaires (flip, cutter, adder, intersect, peg, curl). Le node *RIMLIGHT_G* comprenait ainsi plusieurs entrées :
 * une pour l'asset à rimlighter (**asset**)
 * une pour rajouter un peg pour singulariser (**peg**)
@@ -162,7 +162,7 @@ Exemple avec l'asset Primerose-2020
 Avec le node *curves* et son préset par défaut, la rimlight était trop prononcée sur la chevelure, la peau et pas assez sur son T-shirt. En analysant chaque canal RVB, il était possible de voir quel canal il fallait modifier pour soit baisser ou soit augmenter le niveau.
 ![Primerose rimlight par défaut](Primerose-rimlight-default-FR.png)
 ![Canaux RVB originaux](Primerose-2020-RVB-Origin.png)
-En appliquant de nouveaux réglages canal par canal, on modifiait la luma du matte soustrait au matte de la rimlight généré. La différence se faisant principalement sur le *canal Green* c'est clui-ci qui a été modifié pour augmenter la valeur luma sur les cheveux et baisser la valeur luma finale pour le T-Shirt. Le canal Red a été aplati à 0 pour récupérer les pertes de luma dû à la modification du canal Green et le canal Blue a été laisser tel quel n'ayant ici aucun incidence sur les couleurs jaunes/oranges.
+En appliquant de nouveaux réglages canal par canal, on modifiait la luma du matte soustrait au matte de la rimlight généré. La différence se faisant principalement sur le *canal Green* c'est clui-ci qui a été modifié pour augmenter la valeur luma sur les cheveux et baisser la valeur luma finale pour le T-Shirt. Le canal Red a été aplati à 1 pour récupérer les pertes de luma dû à la modification du canal Green et le canal Blue a été laisser tel quel n'ayant ici aucun incidence sur les couleurs jaunes/oranges.
 ![Canal Red modifié](Primerose-Red.png)
 ![Canal Green modifié](Primerose-Green.png)
 ![Canal Blue modifié](Primerose-Blue.png)
