@@ -1,19 +1,19 @@
-+++
-date = '2026-08-26T17:09:09+02:00'
-draft = true
-title = "Assembly : un workflow pour une automatisation totale de la box-anim Harmony"
-tags = ['Toon Boom', 'Harmony', 'box']
-categories = ["Pipeline", '2D', 'scripting']
-keywords = ['Pipeline', 'scripting', 'toon boom', 'harmony', 'build']
-description = 'pour SEO'
-summary = 'La BoxAnim dans Harmony bien que nécessaire pour établir et livrer une base techniquement solide aux animateurs, n’est pas l’étape la plus glamour dans l’animation. Beaucoup d’opérations redondantes deviennent fastidieuses… alors place aux scripts _🚀'
-featured = 'featured-gen.png'
-showHero = true
-heroStyle = 'background'
-layoutBackgroundBlur = true
-showTableOfContents = true
-upcoming = true
-+++
+---
+date: '2026-08-26T17:09:09+02:00'
+draft: false
+title: "Assembly : un workflow pour une automatisation totale de la box-anim Harmony"
+tags: ['Toon Boom', 'Harmony', 'box']
+categories: ["Pipeline", '2D', 'scripting']
+keywords: ['Pipeline', 'scripting', 'toon boom', 'harmony', 'build']
+description: 'pour SEO'
+summary: 'La BoxAnim dans Harmony bien que nécessaire pour établir et livrer une base techniquement solide aux animateurs, n’est pas l’étape la plus glamour dans l’animation. Beaucoup d’opérations redondantes deviennent fastidieuses… alors place aux scripts _🚀'
+featured: 'featured-gen.png'
+showHero: true
+heroStyle: 'background'
+layoutBackgroundBlur: true
+showTableOfContents: true
+upcoming: true
+---
 
 ## Contexte
 

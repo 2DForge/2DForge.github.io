@@ -1,19 +1,19 @@
-+++
-date = '2026-08-26T17:09:09+02:00'
-draft = true
-title = 'template'
-tags = ['Toon Boom', 'Harmony']
-categories = ["Compositing", '2D']
-keywords = ['compositing', 'animation 2D', 'scripting', 'toon boom', 'harmony']
-summary = 'This is my summary'
-descripttion = 'pour SEO'
-featured = 'featured-gen.png'
-showHero = true
-heroStyle = 'background'
-layoutBackgroundBlur = true
-showTableOfContents = true
-upcoming = true
-+++
+---
+date: '2026-08-26T17:09:09+02:00'
+draft: false
+title: "Assembly: a workflow for the total automation of the Harmony animation box."
+tags: ['Toon Boom', 'Harmony', 'box']
+categories: ["Pipeline", '2D', 'scripting']
+keywords: ['Pipeline', 'scripting', 'toon boom', 'harmony', 'build']
+description: 'pour SEO'
+summary: 'While the BoxAnim in Harmony is essential for establishing and delivering a technically solid foundation for animators, it isn’t the most glamorous part of animation. Many repetitive tasks become tedious—so, bring on the scripts.'
+featured: 'featured-gen.png'
+showHero: true
+heroStyle: 'background'
+layoutBackgroundBlur: true
+showTableOfContents: true
+upcoming: true
+---
 
 ## TitreH2
 
