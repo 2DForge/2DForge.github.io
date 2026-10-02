@@ -2,7 +2,7 @@ disabled = false
 locale = "fr"
 label = "Français"
 weight = 1
-title = "FORGE"
+title = "2D FORGE"
 
 [params]
   displayName = "Français"
