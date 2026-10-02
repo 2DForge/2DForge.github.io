@@ -178,5 +178,5 @@ Ce script était executé lors du build-compositing de la scène Harmony afin qu
 
 {{< feature-grid columns="1" >}}
 {{< feature icon="youtube" title="Moi à ton âge | série TV 52x11" url="https://www.france.tv/enfants/six-huit-ans/moi-a-ton-age/" label="Tous les épisodes sur france.tv">}}
-À 10 ans, Paul est un enfant tout ce qu’il y a de plus normal ! Sauf que... dès qu’un adulte lui dit les mots « Moi à ton âge », Paul est aussitôt propulsé à l'époque où son interlocuteur avait lui aussi 10 ans ! *© Monello* {{< /feature >}}
+À 20 ans, Paul est un enfant tout ce qu’il y a de plus normal ! Sauf que... dès qu’un adulte lui dit les mots « Moi à ton âge », Paul est aussitôt propulsé à l'époque où son interlocuteur avait lui aussi 10 ans ! *© Monello* {{< /feature >}}
 {{< /feature-grid >}}
