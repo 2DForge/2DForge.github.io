@@ -1,19 +1,19 @@
-+++
-date = '2026-08-26T17:09:09+02:00'
-draft = true
-title = 'template'
-tags = ['Toon Boom', 'Harmony']
-categories = ["Compositing", '2D']
-keywords = ['compositing', 'animation 2D', 'scripting', 'toon boom', 'harmony']
-summary = 'This is my summary'
-descripttion = 'pour SEO'
-featured = 'featured-gen.png'
-showHero = true
-heroStyle = 'background'
-layoutBackgroundBlur = true
-showTableOfContents = true
-upcoming = true
-+++
+---
+date: '2026-08-26T17:09:09+02:00'
+draft: true
+title: 'template'
+tags: ['Toon Boom', 'Harmony']
+categories: ["Compositing", '2D']
+keywords: ['compositing', 'animation 2D', 'scripting', 'toon boom', 'harmony']
+description: 'pour SEO'
+summary: 'This is my summary'
+featured: 'featured-gen.png'
+showHero: true
+heroStyle: 'background'
+layoutBackgroundBlur: true
+showTableOfContents: true
+upcoming: true
+---
 
 ## TitreH2
 
