@@ -122,6 +122,7 @@ Deux sorties :
 
 Enfin le node *RIMLIGHT_G* a ses propres *properties* pour flipper la rimlight et activer l'intersection si présente (pour une question de préviz openGL). *D'autres options ont été rajoutées au fur et à mesure de cas particulier récurrents*.
 
+![rimlights matte](rimlight-matte-display.png)
 ![Input Outuput du node rimlight](rimlight-node-groupe.png)
 
 #### Node Peg Auto-Offset

@@ -121,6 +121,7 @@ Two outputs:
 
 Finally, the *RIMLIGHT_G* node has its own properties to flip the rimlight and activate the intersection if present (for OpenGL preview purposes). *Other options have been added over time to address recurring specific use cases*.
 
+![rimlights matte](rimlight-matte-display.png)
 ![Rim light node inputs and outputs](rimlight-node-groupe.png)
 
 #### Auto-Offset Peg Node
@@ -159,7 +160,7 @@ To customize the result, rather than modifying RGB values ​​globally, the R,
 Example using the Primerose-2020 asset
 {{</lead>}}
 With the "curves" node using its default preset, the rimlight is too pronounced on the hair and skin, but insufficient on the T-shirt. By analyzing each RGB channel, it is possible to determine which channel needs adjustment to either lower or raise the level.
-![Default Primerose rimlight](Primerose-rimlight-default-FR.png)
+![Default Primerose rimlight](Primerose-rimlight-default-EN.png)
 ![Original RGB channels](Primerose-2020-RVB-Origin.png)
 Applying new settings channel by channel modifies the luma of the matte subtracted from the generated rimlight matte. Since the difference occurs primarily in the *Green channel*, this channel is adjusted to increase the luma value on the hair and lower the final luma value for the T-shirt. The Red channel is flattened to 1 to compensate for luma loss caused by the Green channel modification, while the Blue channel is left unchanged, as it has no impact on the yellow/orange colors here.
 ![Modified Red channel](Primerose-Red.png)
