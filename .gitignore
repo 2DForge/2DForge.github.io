@@ -1,1 +1,8 @@
+# folder
 public/
+
+# files types
+*.af
+*.af~lock~
+
+# files
