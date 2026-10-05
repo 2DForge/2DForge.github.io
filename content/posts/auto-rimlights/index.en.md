@@ -19,7 +19,7 @@ upcoming: false
 The challenge was to automate the creation of 24,000+ rimlights and ensure their consistency in size, orientation and colorimetry between each shot.
 {{< /lead >}}
 
-{{< youtubeLite id="wcf3q5ARWzM" label="Auto-rimlights" >}}
+{{< youtubeLite id="dOOQuX_RSjU" label="Auto-rimlights" >}}
 
 ## Context
 

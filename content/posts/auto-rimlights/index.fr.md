@@ -19,7 +19,7 @@ upcoming : false
 Le défi était d'automatiser la création 24000+ rimlights et d'assurer leur cohérence dans leur taille, leur orientation et leur colorimétrie entre chaque plan.
 {{< /lead >}}
 
-{{< youtubeLite id="wcf3q5ARWzM" label="Auto-rimlights" >}}
+{{< youtubeLite id="dOOQuX_RSjU" label="Auto-rimlights" >}}
 
 ## Contexte
 
@@ -54,7 +54,7 @@ Schéma de fonctionnement simplifié
 TPL principal de l'automatisation, il contient un node *Peg* dont les valeurs position x/y sont contrôlées via un *Master-Controller* qui permet de choisir à la fois l'orientation et de contôler la taille de la *rimlight*. Par défaut il faux placer le curseur sur le bord du *Master-Controller* pour obtenir une taille normée et cohérente. En rapprochant le curseur près du centre, on peut diminuer la taille de la *rimlight* ce qui fut utiliser occasionnellement.
 Le second node important est le node *HighLight* qui gère la colorimétrie pour toutes les *rimlights* des assets, en liant les fonctions *Radius*, *color Red* / *Green* / *Blue* / *Alpha*, *Intensity* au node *HighLight* de chaque asset.
 
-![Fonctionnement du TPL RIMLIGHT-CTRL](TPL-RIMLIGHT-CTRL.png)
+![Fonctionnement du TPL RIMLIGHT-CTRL](TPL-RIMLIGHT-CTRL.webp)
 
 ### Master Controller
 Le *Master-Controller* a pour mission de choisir la source lumineuse en fonction du plan. Un simple *grid-wizard* avec 4 points fait l'affaire, chaque angle réprésentant les sources lumineuses classiques haut/bas/gauche/droite. La direction de la source lumineuse est établie en fonction de celle du *background*.  
