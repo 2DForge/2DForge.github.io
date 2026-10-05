@@ -1,68 +1,69 @@
 ---
-date : '2026-08-26T17:09:09+02:00'
-draft : false
-title : 'Automating rimlights in Toon Boom Harmony : TPLs + Master Controller + expressions + Scripts'
-tags : ['toon boom', 'harmony', 'scripting']
-categories : ["compositing"]
-keywords : ['compositing', 'animation 2D', 'scripting', 'toon boom', 'harmony', 'rimlight', 'master controller', 'script', 'scripting']
-description : 'Discover how to automate the creation and tracking of rimlights in Toon Boom Harmony using TPLs, expressions, Master Controllers, and scripts.'
-summary : 'Case study on automating over 24,000 rim lights in Toon Boom Harmony for a 2D TV series: productivity gains, expressions, and TPLs.'
-featured : 'featured.jpeg'
-showHero : true
-heroStyle : 'background'
-layoutBackgroundBlur : true
-showTableOfContents : true
-upcoming : false
+date: '2026-08-26T17:09:09+02:00'
+draft: false
+title: 'Automate rimlights on Toon Boom Harmony: TPLs + Master Controller + expressions + Scripts'
+tags: ['toon boom', 'harmony', 'scripting']
+categories: ["compositing"]
+keywords: ['compositing', '2D animation', 'scripting', 'toon boom', 'harmony', 'rimlight', 'master controller', 'script', 'scripting']
+description: 'Discover how to automate the creation and monitoring of rimlights in 2D compositing with Toon Boom Harmony using TPLs, expressions, master controller and script.'
+summary: 'Feedback on the automation of 24,000+ rimlights in Toon Boom Harmony for a 2D TV series: productivity gain (script, TPL, Master Controller and expressions).'
+featured: 'featured.jpeg'
+showHero: true
+heroStyle: 'background'
+layoutBackgroundBlur: true
+showTableOfContents: true
+upcoming: false
 ---
 
 {{< lead >}}
-The challenge was to automate the creation of over 24,000 rimlights and ensure consistency in size, orientation, and color across every shot.{{< /lead >}}
+The challenge was to automate the creation of 24,000+ rimlights and ensure their consistency in size, orientation and colorimetry between each shot.
+{{< /lead >}}
 
-{{< youtubeLite id="DsA9l-yYEJs" label="Auto-rimlights" >}}
+{{< youtubeLite id="wcf3q5ARWzM" label="Auto-rimlights" >}}
 
 ## Context
 
-The rimlight effect is a great classic of 2D compositing. For season 2 of **When I Was Your Age** *© Monello* whose compositing was done by [Big Company](https://www.bigcompany.fr/), this effect had to be systematically applied to all the characters and props for each shot. With Harmony, the technique used is simple and known to everyone using the *Highlight* node whose *matte* input is connected to the object itself through an *Apply-Peg-Transformation* node and a *Peg* node which manages its offset. Even if the operation remains basic, it becomes very time-consuming if it has to be systematized for all the shots of a TV series. A simple calculation to realize this: 52 episodes, 175 shots on average and 3 characters/props in average shot => roughly ±24000 rimlight minimum to do. This is no small feat knowing that the rimlight effect was only the basis of the compositing request on this production. Only automation of the rimlights would make it possible to maintain a sustained desired quota of 11 shots/day/operator. It was 14 shots / day / operator in reality :hot_pepper:.
+The rimlight effect is a great classic of 2D compositing. For season 2 of **Me at your age** *© Monello* whose compositing was done by [Big Company](https://www.bigcompany.fr/), this effect had to be systematically applied to all the characters and props for each shot. With Harmony, the technique used is simple and known to everyone using the *Highlight* node whose *matte* input is connected to the object itself through an *Apply-Peg-Transformation* node and a *Peg* node which manages its offset. Even if the operation remains basic, it becomes very time-consuming if it has to be systematized for all the shots of a TV series. A simple calculation to realize this: 52 episodes, 175 shots on average and 3 characters/props in average shot => roughly ±24000 rimlight minimum to do. This is no small feat knowing that the rimlight effect was only the basis of the compositing request on this production. Only automation of the rimlights would make it possible to maintain a sustained desired quota of 11 shots/day/operator. It was 14 shots / day / operator in reality :hot_pepper:.
 
 
-## Managing Rimlight Size
+## Rimlight size management
 
-Automation was required to ensure consistent rimlight sizing based on the scale of characters and props (hereinafter referred to as "assets"): for a given scale, every asset had to feature a rimlight of the same size, maintaining that size across identical shot values. Furthermore, the difference in rimlight size between foreground and background assets could not be linear; this ensured the rimlight remained visible on background assets without becoming overly dominant on foreground assets.
+The automation had to ensure consistency in the size of the rimlights according to the scale of the characters/props (mentioned ***assets*** below): for the same scale, each asset had to have a rimlight of the same size and have the same size for an identical plan value. In addition, the difference in size of the rimlight between an asset in the foreground or in the background should not be linear so that the rimlight remains visible on an asset in the background and is not too big on an asset in the foreground.
 
-## Managing Rimlight Orientation
+## Rimlight orientation management
 
-The automation had to ensure that the X/Y offset generated by the *Apply-Peg-Transformation* node was identical for every asset, creating the impression of a consistent light source. Additionally, it needed to allow for the rimlight to be flipped if the light source was centered.
+The automation had to ensure that the x/y offset generated by the *Apply-Peg-Transformation* node was identical for each asset in order to give the impression that the light source was identical. In addition, it was necessary to offer the possibility of flipping the rimlight if the light source was central.
 
-## Managing Rimlight color
+## Management of rimlight colorimetry
 
-Finally, the automation had to ensure color consistency for the rimlight across each asset.
+Finally, the automation had to ensure the colorimetric consistency of the rimlight for each asset.
 
 ## Creating the automation
 
-{{< alert icon="code" >}}
-**TPLs  +  EXPRESSION  +  MASTER-CONTROLLER  +  SCRIPT**
+{{< alert icon="dev" >}}
+**TPLs + EXPRESSION + MASTER-CONTROLLER + SCRIPT**
 {{< /alert >}}
 
 {{<lead>}}
 Simplified operating diagram
 {{</lead>}}
 
-![Diagram of the rimlight automation pipeline in Toon Boom Harmony](schema2.svg)
+![Schema of the rimlights automation pipeline in Toon Boom Harmony](schema2.svg)
 
 ### RIMLIGHT CTRL
-This was the main automation template (TPL); it contained a *Peg* node with X/Y position values controlled by a *Master Controller*, which allowed for the selection of orientation and the adjustment of the *rimlight* size. By default, the cursor had to be placed at the edge of the *Master Controller* to achieve a standard, consistent size. Moving the cursor closer to the center reduced the *rimlight* size, a feature used occasionally.
-The second key component was the *HighLight* node, which managed color settings for all asset *rimlights* by linking the *Radius*, *Red*/*Green*/*Blue*/*Alpha* color, and *Intensity* functions to the *HighLight* node of each asset.
+Main TPL of the automation, it contains a *Peg* node whose x/y position values are controlled via a *Master-Controller* which allows you to choose both the orientation and control the size of the *rimlight*. By default, you must place the cursor on the edge of the *Master-Controller* to obtain a standardized and consistent size. By moving the cursor closer to the center, you can decrease the size of the *rimlight* which was used occasionally.
+The second important node is the *HighLight* node which manages the colorimetry for all the *rimlights* of the assets, by linking the *Radius*, *color Red* / *Green* / *Blue* / *Alpha*, *Intensity* functions to the *HighLight* node of each asset.
 
-![How the TPL RIMLIGHT-CTRL works](TPL-RIMLIGHT-CTRL.png)
+![How TPL RIMLIGHT-CTRL works](TPL-RIMLIGHT-CTRL.png)
 
 ### Master Controller
-The Master Controller’s task was to select the light source based on the shot. A simple 4-point grid wizard did the job, with each corner representing the standard light sources: top, bottom, left, and right. The light source direction was determined based on the background.
+The *Master-Controller*'s mission is to choose the light source according to the plan. A simple *grid-wizard* with 4 points does the trick, each angle representing the classic up/down/left/right light sources. The direction of the light source is established based on that of the *background*.
 
 ### Expression
-The expression's function was to calculate (using a mathematical formula) the x/y offset based on the *Master Controller* and the scale of the asset(s).
-The **{asset}** value corresponds to the asset name (e.g., mt000-ch-sandrine-2020).
+The role of the expression is to calculate (mathematical formula) the offset in x/y depending on the *Master Controller* and the size (*scale*) of the asset(s).
+The value of **{asset}** corresponds to the name of the asset (exemple : mt000-ch-sandrine-2020)
 
-####  Expression de position.X (*Expr_{asset}_offsetX*)
+####  Position.X expression (*Expr_{asset}_offsetX*)
 ```javascript
 sNode = {asset} // string provided by script
 scale = value( sNode + "_P_Scale_y", currentFrame)
@@ -70,7 +71,7 @@ scale = Math.atan(scale) / 3.3
 angl = value("OFFSET_MASTER_Pos_x")
 value = Math.abs(scale) * angl
 ```
-####  Expression de position.Y (*Expr_{asset}_offsetY*)
+####  Position.Y expression (*Expr_{asset}_offsetY*)
 ```javascript
 sNode = {asset} // string provided by script
 scale = value( sNode + "_P_Scale_y", currentFrame )
@@ -81,8 +82,7 @@ value = -scale * angl
 
 <div class="mt-6">
 {{< alert icon="triangle-exclamation" cardColor="#FC0071" iconColor="#1d3557" textColor="#f1faee" >}}
-For an expression to retrieve the *scale_y* information from a *PEG* node, you must first declare the *scale_y* function in the *XSheet* (create Bézier) and, of course, reconnect it to the *scale_y* function of that same *PEG* node.
-{{< /alert >}}
+For an expression to retrieve the *scale_y* information from a *PEG* node, you must first declare the *scale_y* function in the *XSheet* (create Bézier) and, of course, reconnect it to the *scale_y* function of that same *PEG* node. {{< /alert >}}
 </div>
 
 ![Declaring the scale_y function as Bézier in Toon Boom Harmony](scaleYbezier.png)
@@ -91,7 +91,7 @@ For an expression to retrieve the *scale_y* information from a *PEG* node, you m
 <div class="mt-6">
 
 {{< alert icon="circle-info" cardColor="#FC0071" iconColor="#1d3557" textColor="#f1faee" >}}
-The ***Math.atan*** mathematical function enabled a non-linear calculation, ensuring that the rimlight offset increased more slowly than the asset's scale. Important: ***Math.atan*** was relevant only because the default asset size was very large, meaning that any imported asset had a ***scale < 1***.
+The ***Math.atan*** mathematical function allows for a non-linear calculation, ensuring the rimlight offset increases more slowly than the asset's scale. Important: ***Math.atan*** is relevant here only because the default asset size is very large, meaning any imported asset has a ***scale < 1*** value.
 {{< /alert >}}
 
 </div>
@@ -99,16 +99,16 @@ The ***Math.atan*** mathematical function enabled a non-linear calculation, ensu
 <div class="mt-6">
 
 {{< alert icon="circle-info" cardColor="#FC0071" iconColor="#1d3557" textColor="#f1faee" >}}
-The ***currentFrame*** parameter made it possible to dynamically adjust the offset size based on the asset's scale value at each frame of the shot. If the asset grew or shrank during the shot, the offset was automatically recalculated to adapt (that’s the beauty of expressions :wink:).
+The ***currentFrame*** parameter allows the offset size to dynamically adjust based on the asset's scale value at each frame of the shot. If the asset grows or shrinks during the shot, the offset is automatically recalculated to adjust accordingly (that's the beauty of expressions :wink:).
 {{< /alert >}}
 
 </div>
 
-[These expressions were linked to the X/Y values ​​of the *Auto Offset Peg* node in the RIMLIGHT_G TPL.](#peg-auto-offset-node)
+[These expressions are linked to the X/Y values ​​of the *Auto Offset Peg* node within the RIMLIGHT_G TPL](#auto-offset-peg-node)
 
 ### RIMLIGHT_G
-This TPL (node group), applied to each asset, contained all the nodes required for the rimlight effect: an *Apply-Peg-Transformation* node + a Peg node [*Auto Offset*](#peg-auto-offset-node), a [*Highlight_BODY*](#node-highlight) node, and a multitude of other nodes to handle additional functions (flip, cutter, adder, intersect, peg, curl). The *RIMLIGHT_G* node featured several inputs:
-* one for the asset to be rim-lit (**asset**)
+This TPL (node ​​group), applied to each asset, contains all the nodes required for the rimlight effect: an *Apply-Peg-Transformation* node + an [*Auto Offset* Peg*](#auto-offset-peg-node) node, a [*Highlight_BODY*](#highlight-node) node, and a multitude of other nodes to handle additional functions (flip, cutter, adder, intersect, peg, curl). The *RIMLIGHT_G* node features several inputs:
+* one for the asset to be rimlight (**asset**)
 * one to add a peg for specific adjustments (**peg**)
 * one to clean up the rimlight (**cut**)
 * one to add details to the rimlight (**add**)
@@ -119,63 +119,61 @@ Two outputs:
 * the **composite** of the asset + rimlight
 * the rimlight **matte** for later use
 
-Finally, the *RIMLIGHT_G* node had its own *properties* to flip the rimlight and enable intersection if present (for OpenGL preview purposes). *Other options were added over time to address recurring specific use cases*.
+Finally, the *RIMLIGHT_G* node has its own properties to flip the rimlight and activate the intersection if present (for OpenGL preview purposes). *Other options have been added over time to address recurring specific use cases*.
 
-![Input Outuput of rimlight node](rimlight-node-groupe.png)
+![Rim light node inputs and outputs](rimlight-node-groupe.png)
 
-#### Peg Auto-Offset Node
+#### Auto-Offset Peg Node
 The *position_x* and *position_y* values ​​are linked to the previously declared expressions.
 
-![Auto offest Peg linked by expressions](expression-positions.png)
+![Peg auto-offset linked via expressions](expression-positions.png)
 
-#### Node HighLight
-The *Radius*, *color Red* / *Green* / *Blue* / *Alpha*, *Intensity* values were linked to those of the HighLight node of TPL RIMLIGHT CTRL using the ***Paste Function Link*** function.
+#### HighLight Node
+The *Radius*, *Red* / *Green* / *Blue* / *Alpha* color, and *Intensity* values ​​are linked to those of the HighLight node in the TPL RIMLIGHT CTRL using the ***Paste Function Link*** function.
 ![How to link functions between two HighLight nodes](LinkHighLight.png)
 
 ### Colorimetry
-The *HighLight_BODY* node generating the rimlight was set to ***Multiplicative*** mode. This mode offered two advantages:
-1. It generated a highlight that preserved the asset's original color saturation, thereby avoiding any washing out of the original colors;
-2. A requirement for the rimlights was that they should not affect the assets' outlines. Since the outline color was pure black (R=0, G=0, B=0), the *Multiplicative* mode left the outline untouched because 0 × n = 0, regardless of the value of n. Consequently, there was no need to subtract the asset's outline from the *HighLight_BODY* node's *matte* input. This was a significant advantage, as it eliminated the need to subtract the character's outline from the *HighLight_BODY* node's *matte*. It saved a calculation step, but more importantly—while subtracting the outline from the *matte* was technically straightforward—the *Line Art (isolate)* node (using the *Flatten* parameter) was not 100% reliable (due to the complexity of the rig and the arrangement of the cutter nodes). Correcting the resulting errors would have quickly become a tedious and time-consuming task.
+The *HighLight_BODY* node generating the rimlight is set to ***Multiplicative*** mode. This mode offers two advantages:
+1. It generates a highlight that preserves the asset's original color saturation, avoiding any washing out of the original colors.
+2. One of the requirements for rim lights was that they should not affect the asset's line art. Since the asset's line art color was pure black (R=0, G=0, B=0), *Multiplicative* mode does not affect the line art—because 0 x n = 0, regardless of the value of n. Consequently, there is no need to subtract the asset's line art from the *HighLight_BODY* node's *matte* input. While subtracting line art from the *matte* is technically simple using a *Line Art (isolate)* node with the *Flatten* parameter, eliminating the need to subtract the character's line art from the *HighLight_BODY* node's *matte* is a major advantage: it saves a calculation step, but more importantly flatting the node *Line Art (isolate)* is not 100% reliable (*due to the complexity of the rig and the arrangement of cutter nodes*). Correcting errors quickly becomes tedious and a waste of time.
 
 <div class="mt-6">
 
-However, the *Multiply* mode has a drawback: since the colors calculated by the *HighLight_BODY* node are generated via ***multiplication***, the darker a color was, the less it was affected—and conversely, the lighter a color was, the more it was affected. To normalize these values, a *Curves* node took the asset's colors as input and adjusted the RGB values—which served as a *matte* (using a *LUMA_MATTE* node: *greyscale* + *Matte Output = true*)—so they could be subtracted from the generated matte to weight the effect.
+However, *Multiplicative* mode also has a drawback: the colors calculated by the *HighLight_BODY* node are precisely because of the ***multiplicative***, the darker a color is, the less it is affected, and conversely, the lighter a color is, the more it is affected. To normalize these values, a "curves" node takes the asset's colors as input and adjusts the RGB values—which serve as a matte (LUMA_MATTE node: *greyscale* + *Matte Output = true*)—to be subtracted from the generated matte, thereby weighting the effect.
 ![rimlight matte weighting](rimlight-matte-weighting-schema.png)
-By comparing the output of a *Display* node connected to the original matte versus the one corrected by the *Curves* node, one can clearly see the areas of the matte that have been weighted (particularly the highlights, to prevent them from "blowing out").
+By comparing the output of a "display" node placed under the original matte versus the matte corrected by the "curves" node, one can clearly distinguish the areas that have been weighted (particularly the highlights, to prevent them from "blowing out").
 ![rimlight matte weighting](Origin-Matte-Corrected-Matte.png)
 
 </div>
 <div class="mt-6">
 
-This *curves* node was originally set up generically to work properly for every asset. However, for the sake of detail, a specific *curves* node was created for each recurring asset (about a dozen in total) to individualize and optimize the rimlight result, with the script handling the selection of the correct node based on the asset's name.
+This "curves" node is set up generically to work correctly for any asset. However, for the sake of detail, a specific "curves" node is created for each recurring asset (about a dozen in total) to customize and optimize the rimlight result; the script automatically selects the appropriate "curves" node based on the asset's name.
 
 </div>
 <div class="mt-6">
 
-To customize the result, rather than modifying the RGB values ​​globally, each channel—Red, Green, and Blue—was adjusted individually. This made it possible to control the matte based on the asset's specific colors.
+To customize the result, rather than modifying RGB values ​​globally, the R, G, and B channels are adjusted individually. This allows for matte control based on the asset's specific colors.
 </div>
 
 {{<lead>}}
 Example using the Primerose-2020 asset
 {{</lead>}}
-With the *Curves* node and its default preset, the rimlight was too pronounced on the hair and skin, and not strong enough on the T-shirt. By analyzing each RGB channel, it was possible to identify which channel needed adjustment to either lower or raise the level.
-![Primerose default rimlight](Primerose-rimlight-default-FR.png)
+With the "curves" node using its default preset, the rimlight is too pronounced on the hair and skin, but insufficient on the T-shirt. By analyzing each RGB channel, it is possible to determine which channel needs adjustment to either lower or raise the level.
+![Default Primerose rimlight](Primerose-rimlight-default-FR.png)
 ![Original RGB channels](Primerose-2020-RVB-Origin.png)
-Applying new settings channel by channel allowed for adjustments to the luma of the matte being subtracted from the generated rimlight matte. Since the difference was most apparent in the *Green channel*, it was modified to increase the luma value for the hair and lower the final luma value for the T-shirt. The Red channel was flattened to 1 to compensate for luma loss caused by the Green channel adjustment, while the Blue channel was left unchanged, as it had no impact on the yellow/orange colors in this instance.
+Applying new settings channel by channel modifies the luma of the matte subtracted from the generated rimlight matte. Since the difference occurs primarily in the *Green channel*, this channel is adjusted to increase the luma value on the hair and lower the final luma value for the T-shirt. The Red channel is flattened to 1 to compensate for luma loss caused by the Green channel modification, while the Blue channel is left unchanged, as it has no impact on the yellow/orange colors here.
 ![Modified Red channel](Primerose-Red.png)
 ![Modified Green channel](Primerose-Green.png)
 ![Modified Blue channel](Primerose-Blue.png)
 ![Modified RGB channels](Primerose-2020-RVB-modified.png)
-![Primerose modified rimlight](Primerose-rimlight-modified.png)
+![Modified Primerose rimlight](Primerose-rimlight-modified.png)
 
 ### Script
-As a cornerstone of the automation process—without which implementation would have been too laborious—a script was designed to import the *RIMLIGHT_CTRL* template. For every asset in the scene, it imported the *RIMLIGHT_G* template, defined the *scale_y* value and the two expressions (one for *position_x* and one for *position_y*), linked them to the rimlight's "Auto Offset" peg, connected the *Radius*, *color Red*/*Green*/*Blue*/*Alpha*, and *Intensity* values ​​to the *HighLight_BODY* node, and finally selected the appropriate *curves* node.
-
-<div class="mt-8">
-This script is executed during the Harmony scene compositing build so that compositors open a scene that is immediately ready for artistic editing.
+As the cornerstone of the automation process (*without which implementation would be too laborious*), the script's role is to import the RIMLIGHT_CTRL TPL and, for each asset in the scene: import a RIMLIGHT_G TPL; declare its *scale_y* value; declare the two expressions (one for *position_x* and one for *position_y*) and link them to the rimlight's *Auto Offset* peg; link the *Radius*, *color Red* / *Green* / *Blue* / *Alpha*, and *Intensity* values ​​to the *HighLight_BODY* node; and finally, select the correct *curves* node. <div class="mt-8">
+This script runs during the Harmony scene compositing build process, ensuring that compositing artists open a scene that is immediately ready for artistic editing.
 </div>
 
 {{< feature-grid columns="1" >}}
-{{< feature icon="youtube" title="When I Was Your Age | série TV 52x11" url="https://www.france.tv/enfants/six-huit-ans/moi-a-ton-age/" label="All episodes on france.tv">}}
-At soon as someone says the words "When I was your age…" Paul is immediately hurled back to the time when the person he is talking to was 10 years old like he is now! *© Monello* {{< /feature >}}
+{{< feature icon="youtube" title="Me at Your Age | TV series (52 x 11 min)" url="https://www.france.tv/enfants/six-huit-ans/moi-a-ton-age/" label="All episodes on france.tv">}}
+At 10 years old, Paul is a perfectly normal kid! Except that... whenever an adult says the words "Me at your age," Paul is instantly transported back to the time when that person was 10 years old too! *© Monello* {{< /feature >}}
 {{< /feature-grid >}}

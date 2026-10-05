@@ -6,7 +6,7 @@ tags : ['toon boom', 'harmony', 'scripting']
 categories : ["compositing"]
 keywords : ['compositing', 'animation 2D', 'scripting', 'toon boom', 'harmony', 'rimlight', 'master controller', 'script', 'scripting']
 description : 'Découvrez comment automatiser la création et le suivi des rimlights en compositing 2D avec Toon Boom Harmony grâce aux TPLs, expressions, master controller et script.'
-summary : 'Retour d’expérience sur l’automatisation de 24 000+ rimlights dans Toon Boom Harmony pour une série TV 2D : gain de productivité par script + TPL, Master Controller et expressions.'
+summary : 'Retour d’expérience sur l’automatisation de 24 000+ rimlights dans Toon Boom Harmony pour une série TV 2D : gain de productivité (script, TPL, Master Controller et expressions).'
 featured : 'featured.jpeg'
 showHero : true
 heroStyle : 'background'
@@ -19,7 +19,7 @@ upcoming : false
 Le défi était d'automatiser la création 24000+ rimlights et d'assurer leur cohérence dans leur taille, leur orientation et leur colorimétrie entre chaque plan.
 {{< /lead >}}
 
-{{< youtubeLite id="DsA9l-yYEJs" label="Auto-rimlights" >}}
+{{< youtubeLite id="wcf3q5ARWzM" label="Auto-rimlights" >}}
 
 ## Contexte
 
@@ -28,7 +28,7 @@ L'effet rimlight est un grand classique du compositing 2D. Pour la saison 2 de *
 
 ## Gestion de la taille des rimlights
 
-L'automatisation devait assurer la cohérence de la taille des rimlights suivant l'échelle (scale) des personnages/props (mentionnés ***assets*** ci-après) : pour une même échelle chaque asset devait avoir une rimlight de même taille et avoir la même taille pour une valeur de plan identique. De plus la différence de taille de la rimlight entre un asset en premier plan ou en arrière plan ne devait pas être linéaire afin que la rimlight reste visible sur un asset en arrière plan et ne soit pas trop présente sur un asset en premier plan.
+L'automatisation devait assurer la cohérence de la taille des rimlights suivant l'échelle (scale) des personnages/props (mentionnés ***assets*** ci-après) : pour une même échelle chaque asset devait avoir une rimlight de même taille et avoir la même taille pour une valeur de plan identique. De plus la différence de taille de la rimlight entre un asset en premier plan ou en arrière plan ne devait pas être linéaire afin que la rimlight reste visible sur un asset en arrière plan et ne soit pas trop grande sur un asset en premier plan.
 
 ## Gestion de l'orientation des rimlights
 
@@ -51,16 +51,16 @@ Schéma de fonctionnement simplifié
 ![Schéma du pipeline d'automatisation des rimlights dans Toon Boom Harmony](schema2.svg)
 
 ### RIMLIGHT CTRL
-TPL principal de l'automatisation, il contenait un node *Peg* dont les valeurs position x/y était contrôlées via un *Master-Controller* qui permettait de choisir à la fois l'orientation et de contôler la taille de la *rimlight*. Par défaut il fallait placer le curseur sur le bord du *Master-Controller* pour obtenir une taille normée et cohérente. En rapprochant le curseur près du centre, on pouvait diminuer la taille de la *rimlight* ce qui fut utiliser occasionnellement.
-Le second node important était le node *HighLight* qui gérait la colorimétrie pour toutes les *rimlights* des assets, en liant les fonctions *Radius*, *color Red* / *Green* / *Blue* / *Alpha*, *Intensity* au node *HighLight* de chaque asset.
+TPL principal de l'automatisation, il contient un node *Peg* dont les valeurs position x/y sont contrôlées via un *Master-Controller* qui permet de choisir à la fois l'orientation et de contôler la taille de la *rimlight*. Par défaut il faux placer le curseur sur le bord du *Master-Controller* pour obtenir une taille normée et cohérente. En rapprochant le curseur près du centre, on peut diminuer la taille de la *rimlight* ce qui fut utiliser occasionnellement.
+Le second node important est le node *HighLight* qui gère la colorimétrie pour toutes les *rimlights* des assets, en liant les fonctions *Radius*, *color Red* / *Green* / *Blue* / *Alpha*, *Intensity* au node *HighLight* de chaque asset.
 
 ![Fonctionnement du TPL RIMLIGHT-CTRL](TPL-RIMLIGHT-CTRL.png)
 
 ### Master Controller
-Le *Master-Controller* avait pour mission de choisir la source lumineuse en fonction du plan. Un simple *grid-wizard* avec 4 points fut l'affaire, chaque angle réprésentant les sources lumineuses classiques haut/bas/gauche/droite. La direction de la source lumineuse était établie en fonction de celle du *background*.  
+Le *Master-Controller* a pour mission de choisir la source lumineuse en fonction du plan. Un simple *grid-wizard* avec 4 points fait l'affaire, chaque angle réprésentant les sources lumineuses classiques haut/bas/gauche/droite. La direction de la source lumineuse est établie en fonction de celle du *background*.  
 
 ### Expression
-L'expression avait pour rôle de calculer (formule mathématique) l'offset en x/y en fonction du *Master Controller* et de la taille (*scale*) du/des assets.
+L'expression a pour rôle de calculer (formule mathématique) l'offset en x/y en fonction du *Master Controller* et de la taille (*scale*) du/des assets.
 La valeur de **{asset}** correspond au nom de l'asset (exemple : mt000-ch-sandrine-2020)
 
 ####  Expression de position.X (*Expr_{asset}_offsetX*)
@@ -92,7 +92,7 @@ Afin qu'une expression puisse récupérer l'information *scale_y* d'un node *PEG
 <div class="mt-6">
 
 {{< alert icon="circle-info" cardColor="#FC0071" iconColor="#1d3557" textColor="#f1faee" >}}
-La fonction mathématique ***Math.atan*** permettait d'avoir un calcul non linéaire afin que l'offset de la rimlight augmente moins vite que le scale de l'asset. Important : ***Math.atan*** n'était pertinente que parce que la taille par défaut des assets était très grande, de telle manière que tout asset importé avait une valeur de ***scale < 1***.
+La fonction mathématique ***Math.atan*** permet d'avoir un calcul non linéaire afin que l'offset de la rimlight augmente moins vite que le scale de l'asset. Important : ***Math.atan*** n'est pertinente que parce que la taille par défaut des assets est très grande, de telle manière que tout asset importé ont une valeur de ***scale < 1***.
 {{< /alert >}}
 
 </div>
@@ -100,15 +100,15 @@ La fonction mathématique ***Math.atan*** permettait d'avoir un calcul non liné
 <div class="mt-6">
 
 {{< alert icon="circle-info" cardColor="#FC0071" iconColor="#1d3557" textColor="#f1faee" >}}
-Le paramètre ***currentFrame*** permettait d'adapter dynamiquement la taille de l'offset en fonction de la valeur scale de l'asset à chaque frame du plan. Si l'asset grossissait/diminuait durant le plan, l'offset était automatiquement recalculé pour s'adapter (c'est toute la beauté des expressions :wink:).  
+Le paramètre ***currentFrame*** permet d'adapter dynamiquement la taille de l'offset en fonction de la valeur scale de l'asset à chaque frame du plan. Si l'asset grossit/diminue durant le plan, l'offset est automatiquement recalculé pour s'adapter (c'est toute la beauté des expressions :wink:).  
 {{< /alert >}}
 
 </div>
 
-[Ces expressions étaient reliées aux valeurs X/Y du node *Auto Offset Peg* du TPL RIMLIGHT_G](#node-peg-auto-offset)
+[Ces expressions reliées aux valeurs X/Y du node *Auto Offset Peg* du TPL RIMLIGHT_G](#node-peg-auto-offset)
 
 ### RIMLIGHT_G
-Ce TPL (node groupe) appliqué à chaque asset contenait tous les nodes nécessaires pour l'effet rimlight : node  *Apply-Peg-Transformation* + node Peg [*Auto Offset*](#node-peg-auto-offset), node [*Highlight_BODY*](#node-highlight) et une multitude d'autres nodes pour assurer des fonctions supplémentaires (flip, cutter, adder, intersect, peg, curl). Le node *RIMLIGHT_G* comprenait ainsi plusieurs entrées :
+Ce TPL (node groupe) appliqué à chaque asset contient tous les nodes nécessaires pour l'effet rimlight : node  *Apply-Peg-Transformation* + node Peg [*Auto Offset*](#node-peg-auto-offset), node [*Highlight_BODY*](#node-highlight) et une multitude d'autres nodes pour assurer des fonctions supplémentaires (flip, cutter, adder, intersect, peg, curl). Le node *RIMLIGHT_G* comprenait ainsi plusieurs entrées :
 * une pour l'asset à rimlighter (**asset**)
 * une pour rajouter un peg pour singulariser (**peg**)
 * une pour le clean de la rimlight (**cut**)
@@ -120,7 +120,7 @@ Deux sorties :
 * le **composite** de l'asset + rimlight
 * le **matte** de la rimlight pour utilisation ultérieure
 
-Enfin le node *RIMLIGHT_G* avait ses propres *properties* pour flipper la rimlight et activer l'intersection si présente (pour une question de préviz openGL). *D'autres options ont été rajoutées au fur et à mesure de cas particulier récurrents*.
+Enfin le node *RIMLIGHT_G* a ses propres *properties* pour flipper la rimlight et activer l'intersection si présente (pour une question de préviz openGL). *D'autres options ont été rajoutées au fur et à mesure de cas particulier récurrents*.
 
 ![Input Outuput du node rimlight](rimlight-node-groupe.png)
 
@@ -130,17 +130,17 @@ Les valeurs *position_x* & *position_y* sont liées aux expressions déclarées 
 ![Peg auto offest lié par expressions](expression-positions.png)
 
 #### Node HighLight
-Les valeurs *Radius*, *color Red* / *Green* / *Blue* / *Alpha*, *Intensity* étaient réliées à celles du node HighLight de TPL RIMLIGHT CTRL grâce à la fonction ***Paste Function Link***.
+Les valeurs *Radius*, *color Red* / *Green* / *Blue* / *Alpha*, *Intensity* sont réliées à celles du node HighLight de TPL RIMLIGHT CTRL grâce à la fonction ***Paste Function Link***.
 ![Comment lier les functions entre deux nodes HighLight](LinkHighLight.png)
 
 ### Colorimétrie
-Le node *HighLight_BODY* qui génère la rimlight était paramétré en ***Multiplicative***. Ce mode a 2 avantages : 
-1. Générer une HighLight qui garde la saturation de la couleur d'origine de l'asset ce qui évitait d'affadir les couleurs d'origine,
-2. une des demandes pour les rimlights étaient qu'elles n'affectent pas la line des assets. Comme la couleur de la line des asset étaient un noir pur (R=0,G=0,B=0), le mode *Multiplicative* n'affectait pas la line car 0 x n = 0 quelque soit n. Du coup il était inutile de soustraire la line de l'asset à l'entrée *matte* du node *HighLight_BODY*. C'était un gros avantage car ça évitait de soustraire au *matte* du node *HighLight_BODY* la line du personnage. Un calcul en moins mais surtout, même si soustraire la line au *matte* était techniquement simple, le node *Line Art (isolate)* avec le paramètre *Flatten* n'est pas fiable à 100% (*à cause la complexité du rig et de l'agencement des nodes cutter*). Corriger ses erreurs aurait été vite très laborieux et perte de temps.
+Le node *HighLight_BODY* qui génère la rimlight est paramétré en ***Multiplicative***. Ce mode a 2 avantages : 
+1. Générer une HighLight qui garde la saturation de la couleur d'origine de l'asset ce qui évite d'affadir les couleurs d'origine,
+2. une des demandes pour les rimlights étaient qu'elles n'affectent pas la line des assets. Comme la couleur de la line des asset étaient un noir pur (R=0,G=0,B=0), le mode *Multiplicative* n'affecte pas la line car 0 x n = 0 quelque soit n. Du coup il est inutile de soustraire la line de l'asset à l'entrée *matte* du node *HighLight_BODY*. C'est un gros avantage car ça évite de soustraire au *matte* du node *HighLight_BODY* la line du personnage. Un calcul en moins mais surtout, même si soustraire la line au *matte* est techniquement simple en utilisant un node *Line Art (isolate)* avec le paramètre *Flatten*, il n'est pas fiable à 100% (*à cause la complexité du rig et de l'agencement des nodes cutter*). Corriger ses erreurs est vite très laborieux et perte de temps.
 
 <div class="mt-6">
 
-Mais le mode *Multiplicative* a aussi un inconvénient : les couleurs calculées par le node *HighLight_BODY* se faisant justement par ***multiplication***, plus une couleur était foncée moins elle était affectée et inversement plus une couleur était claire plus elle était affectée. Pour homogénéiser ces valeurs, un node curves qui prenait en entrée les couleurs de l'asset rectifiait ses valeurs RBG qui étaient utilisées comme *matte* (node LUMA_MATTE =  *greyscale* + *Matte Ouput = true*) pour être injectée en soustraction du matte généré pour venir pondérer l'effet.
+Mais le mode *Multiplicative* a aussi un inconvénient : les couleurs calculées par le node *HighLight_BODY* se faisant justement par ***multiplication***, plus une couleur est foncée moins elle est affectée et inversement plus une couleur est claire plus elle est affectée. Pour homogénéiser ces valeurs, un node curves qui prend en entrée les couleurs de l'asset rectifie ses valeurs RBG qui sont utilisées comme *matte* (node LUMA_MATTE =  *greyscale* + *Matte Ouput = true*) pour être injectée en soustraction du matte généré pour venir pondérer l'effet.
 ![rimlight matte pondération](rimlight-matte-weighting-schema.png)
 En comparant l'affichage un node *display* sous le matte d'origine et sous celui du matte corrigé par le node *curves*, on voit distinguement les zones du matte qui ont été pondérées (notamment les lumières hautes pour pas qu'elles "brûlent"). 
 ![rimlight matte pondération](Origin-Matte-Corrected-Matte.png)
@@ -148,21 +148,21 @@ En comparant l'affichage un node *display* sous le matte d'origine et sous celui
 </div>
 <div class="mt-6">
 
-Ce node *curves* était paramétré de façon générique pour marcher correctement pour chaque asset. Mais par soucis du détail, un node *curves* a été créé pour chaque asset récurrent (une douzaine) pour individualiser et optimiser le résultat de la rimlight, le script se chargeant de choisir le bon node *curves* en fonction du nom de l'asset.
+Ce node *curves* est paramétré de façon générique pour marcher correctement pour chaque asset. Mais par soucis du détail, un node *curves* est créé pour chaque asset récurrent (une douzaine) pour individualiser et optimiser le résultat de la rimlight, le script se chargeant de choisir le bon node *curves* en fonction du nom de l'asset.
 
 </div>
 <div class="mt-6">
 
-Pour personnaliser le résultat, au lieu de modifier les valeurs RGB de façon globale, c'est  chaque canal R, V, B qui a été modifié individuellement. Ça permettait de contôler le matte en fonction des couleurs spécifiques de l'asset.
+Pour personnaliser le résultat, au lieu de modifier les valeurs RGB de façon globale, c'est  chaque canal R, V, B qui est modifié individuellement. Ça permet de contôler le matte en fonction des couleurs spécifiques de l'asset.
 </div>
 
 {{<lead>}}
 Exemple avec l'asset Primerose-2020
 {{</lead>}}
-Avec le node *curves* et son préset par défaut, la rimlight était trop prononcée sur la chevelure, la peau et pas assez sur son T-shirt. En analysant chaque canal RVB, il était possible de voir quel canal il fallait modifier pour soit baisser ou soit augmenter le niveau.
+Avec le node *curves* et son préset par défaut, la rimlight est trop prononcée sur la chevelure, la peau et pas assez sur son T-shirt. En analysant chaque canal RVB, il est possible de voir quel canal il faux modifier pour soit baisser ou soit augmenter le niveau.
 ![Primerose rimlight par défaut](Primerose-rimlight-default-FR.png)
 ![Canaux RVB originaux](Primerose-2020-RVB-Origin.png)
-En appliquant de nouveaux réglages canal par canal, on modifiait la luma du matte soustrait au matte de la rimlight généré. La différence se faisant principalement sur le *canal Green* c'est clui-ci qui a été modifié pour augmenter la valeur luma sur les cheveux et baisser la valeur luma finale pour le T-Shirt. Le canal Red a été aplati à 1 pour récupérer les pertes de luma dû à la modification du canal Green et le canal Blue a été laisser tel quel n'ayant ici aucun incidence sur les couleurs jaunes/oranges.
+En appliquant de nouveaux réglages canal par canal, on modifie la luma du matte soustrait au matte de la rimlight généré. La différence se faisant principalement sur le *canal Green* c'est clui-ci qui est modifié pour augmenter la valeur luma sur les cheveux et baisser la valeur luma finale pour le T-Shirt. Le canal Red est aplati à 1 pour récupérer les pertes de luma dû à la modification du canal Green et le canal Blue est laisser tel quel n'ayant ici aucun incidence sur les couleurs jaunes/oranges.
 ![Canal Red modifié](Primerose-Red.png)
 ![Canal Green modifié](Primerose-Green.png)
 ![Canal Blue modifié](Primerose-Blue.png)
@@ -170,10 +170,10 @@ En appliquant de nouveaux réglages canal par canal, on modifiait la luma du mat
 ![Primerose rimlight modifiée](Primerose-rimlight-modified.png)
 
 ### Script
-Pierre angulaire de l'automatisation (*sans qui elle serait trop laborieuse à mettre en place*) un script avait pour rôle d'importer le TPL RIMLIGHT_CTRL et pour chaque asset présent dans la scène : importer un TPL RIMLIGHT_G, déclarer sa valeur *scale_y* , déclarer les 2 expressions (une pour *position_x* et une pour *position_y*) puis les lier au peg *Auto Offset* de la rimlight, lier les valeurs *Radius*, *color Red* / *Green* / *Blue* / *Alpha*, *Intensity* au node *HighLight_BODY* et enfin sélectioner le bon node *curves*.
+Pierre angulaire de l'automatisation (*sans qui elle serait trop laborieuse à mettre en place*) un script a pour rôle d'importer le TPL RIMLIGHT_CTRL et pour chaque asset présent dans la scène : importer un TPL RIMLIGHT_G, déclarer sa valeur *scale_y* , déclarer les 2 expressions (une pour *position_x* et une pour *position_y*) puis les lier au peg *Auto Offset* de la rimlight, lier les valeurs *Radius*, *color Red* / *Green* / *Blue* / *Alpha*, *Intensity* au node *HighLight_BODY* et enfin sélectioner le bon node *curves*.
 
 <div class="mt-8">
-Ce script était executé lors du build-compositing de la scène Harmony afin que les opérateurs compo ouvrent une scène qui soit directement artistiquement éditable.
+Ce script est executé lors du build-compositing de la scène Harmony afin que les artistes-compeurs ouvrent une scène qui soit directement artistiquement éditable.
 </div>
 
 {{< feature-grid columns="1" >}}
