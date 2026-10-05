@@ -4,7 +4,7 @@ draft: true
 title: 'template'
 tags: ['Toon Boom', 'Harmony']
 categories: ["Compositing", '2D']
-keywords: ['compositing', 'animation 2D', 'scripting', 'toon boom', 'harmony']
+keywords: ['animation 2D','compositing', 'animation 2D', 'scripting', 'toon boom', 'harmony']
 description: 'pour SEO'
 summary: 'This is my summary'
 featured: 'featured-gen.png'

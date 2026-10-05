@@ -2,9 +2,9 @@
 date: '2026-08-26T17:09:09+02:00'
 draft: true
 title: 'template'
-tags: ['Toon Boom', 'Harmony']
-categories: ["Compositing", '2D']
-keywords: ['compositing', 'animation 2D', 'scripting', 'toon boom', 'harmony']
+tags: ['toon boom', 'harmony']
+categories: ['compositing']
+keywords: ['animation 2D','compositing', 'animation 2D', 'scripting', 'toon boom', 'harmony']
 description: 'pour SEO'
 summary: 'This is my summary'
 featured: 'featured-gen.png'

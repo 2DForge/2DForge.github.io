@@ -2,8 +2,8 @@
 date : '2026-08-26T17:09:09+02:00'
 draft : false
 title : 'Automatiser les rimlights sur Toon Boom Harmony : TPLs + Master Controller + expressions + Scripts'
-tags : ['Toon Boom', 'Harmony', 'Scripting']
-categories : ["Compositing"]
+tags : ['toon boom', 'harmony', 'scripting']
+categories : ["compositing"]
 keywords : ['compositing', 'animation 2D', 'scripting', 'toon boom', 'harmony', 'rimlight', 'master controller', 'script', 'scripting']
 description : 'Découvrez comment automatiser la création et le suivi des rimlights en compositing 2D avec Toon Boom Harmony grâce aux TPLs, expressions, master controller et script.'
 summary : 'Retour d’expérience sur l’automatisation de 24 000+ rimlights dans Toon Boom Harmony pour une série TV 2D : gain de productivité par script + TPL, Master Controller et expressions.'
