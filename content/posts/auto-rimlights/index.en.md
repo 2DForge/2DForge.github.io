@@ -23,8 +23,9 @@ The challenge was to automate the creation of 24,000+ rimlights and ensure their
 
 ## Context
 
-The rimlight effect is a great classic of 2D compositing. For season 2 of **Me at your age** *© Monello* whose compositing was done by [Big Company](https://www.bigcompany.fr/), this effect had to be systematically applied to all the characters and props for each shot. With Harmony, the technique used is simple and known to everyone using the *Highlight* node whose *matte* input is connected to the object itself through an *Apply-Peg-Transformation* node and a *Peg* node which manages its offset. Even if the operation remains basic, it becomes very time-consuming if it has to be systematized for all the shots of a TV series. A simple calculation to realize this: 52 episodes, 175 shots on average and 3 characters/props in average shot => roughly ±24000 rimlight minimum to do. This is no small feat knowing that the rimlight effect was only the basis of the compositing request on this production. Only automation of the rimlights would make it possible to maintain a sustained desired quota of 11 shots/day/operator. It was 14 shots / day / operator in reality :hot_pepper:.
-
+The rimlight effect is a great classic of 2D compositing. For season 2 of **Me at your age** *© Monello* whose compositing was done by [Big Company](https://www.bigcompany.fr/), this effect had to be systematically applied to all the characters and props for each shot. With Harmony, the technique used is simple and known to everyone using the *Highlight* node whose *matte* input is connected to the object itself through an *Apply-Peg-Transformation* node and a *Peg* node which manages its offset. Even if the operation remains basic, it becomes very time-consuming if it has to be systematized for all the shots of a TV series. A simple calculation to realize this: 52 episodes, 175 shots on average and 3 characters/props in average shot => roughly ±24000 rimlight minimum to do.
+<br>
+Automation of the rimlights was necessary.
 
 ## Rimlight size management
 

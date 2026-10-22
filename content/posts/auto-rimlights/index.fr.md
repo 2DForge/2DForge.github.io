@@ -23,8 +23,9 @@ Le défi était d'automatiser la création 24000+ rimlights et d'assurer leur co
 
 ## Contexte
 
-L'effet rimlight est un grand classique du compositing 2D. Pour la saison 2 de **Moi à ton âge** *© Monello* dont le compositing était fait par [Big Company](https://www.bigcompany.fr/), cet effet devait être systématiquement appliqué sur tous les personnages et les props pour chaque plan. Avec Harmony, la technique utilisée est simple et connue de tous en utilisant le node *Highlight* dont l'entrée *matte* est reliée à l'objet lui-même à travers un node *Apply-Peg-Transformation* et un node *Peg* qui gère son offset. Même si opération reste basique, elle devient très gourmande en temps s'il faut la systématiser pour tous les plans d'une série TV. Un simple calcul pour s'en rendre compte : 52 épisodes, 175 plans en moyenne et 3 personnages/props en moyenne plan => soit à la louche  ±24000 rimlight minimum à faire. Ce n'est pas une mince affaire sachant que l'effet rimlight n'était sur cette production que la base de la demande en compositing. Seule une automatisation des rimlights permettrait de tenir un quota souhaité soutenu de 11 plans / jour / opérateur. Ce fut 14 plans / jour / opérateur dans la réalité :hot_pepper:.
-
+L'effet rimlight est un grand classique du compositing 2D. Pour la saison 2 de **Moi à ton âge** *© Monello* dont le compositing était fait par [Big Company](https://www.bigcompany.fr/), cet effet devait être systématiquement appliqué sur tous les personnages et les props pour chaque plan. Avec Harmony, la technique utilisée est simple et connue de tous en utilisant le node *Highlight* dont l'entrée *matte* est reliée à l'objet lui-même à travers un node *Apply-Peg-Transformation* et un node *Peg* qui gère son offset. Même si opération reste basique, elle devient très gourmande en temps s'il faut la systématiser pour tous les plans d'une série TV. Un simple calcul pour s'en rendre compte : 52 épisodes, 175 plans en moyenne et 3 personnages/props en moyenne plan => soit à la louche  ±24000 rimlight minimum à faire.
+<br>
+Une automatisation des rimlights était nécessaire.
 
 ## Gestion de la taille des rimlights
 
