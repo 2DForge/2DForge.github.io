@@ -5,5 +5,5 @@ public/
 *.af
 *.af~lock~
 
-# files
-DS_Store
+# macOS
+.DS_Store
