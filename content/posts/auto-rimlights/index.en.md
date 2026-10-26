@@ -23,7 +23,7 @@ The challenge was to automate the creation of 24,000+ rimlights and ensure their
 
 ## Context
 
-The rimlight effect is a great classic of 2D compositing. For season 2 of **Me at your age** *© Monello* whose compositing was done by [Big Company](https://www.bigcompany.fr/), this effect had to be systematically applied to all the characters and props for each shot. With Harmony, the technique used is simple and known to everyone using the *Highlight* node whose *matte* input is connected to the object itself through an *Apply-Peg-Transformation* node and a *Peg* node which manages its offset. Even if the operation remains basic, it becomes very time-consuming if it has to be systematized for all the shots of a TV series. A simple calculation to realize this: 52 episodes, 175 shots on average and 3 characters/props in average shot => roughly ±24000 rimlight minimum to do.
+The rimlight effect is a great classic of 2D compositing. For season 2 of **When I Was Your Age** whose compositing was done by [Big Company](https://www.bigcompany.fr/), this effect had to be systematically applied to all the characters and props for each shot. With Harmony, the technique used is simple and known to everyone using the *Highlight* node whose *matte* input is connected to the object itself through an *Apply-Peg-Transformation* node and a *Peg* node which manages its offset. Even if the operation remains basic, it becomes very time-consuming if it has to be systematized for all the shots of a TV series. A simple calculation to realize this: 52 episodes, 175 shots on average and 3 characters/props in average shot => roughly ±24000 rimlight minimum to do.
 <br>
 Automation of the rimlights was necessary.
 
@@ -176,6 +176,8 @@ This script runs during the Harmony scene compositing build process, ensuring th
 </div>
 
 {{< feature-grid columns="1" >}}
-{{< feature icon="youtube" title="Me at Your Age | TV series (52 x 11 min)" url="https://www.france.tv/enfants/six-huit-ans/moi-a-ton-age/" label="All episodes on france.tv">}}
-At 10 years old, Paul is a perfectly normal kid! Except that... whenever an adult says the words "Me at your age," Paul is instantly transported back to the time when that person was 10 years old too! *© Monello* {{< /feature >}}
+{{< feature icon="youtube" title="When I Was Your Age | TV series (52 x 11 min)" url="https://www.france.tv/enfants/six-huit-ans/moi-a-ton-age/" label="All episodes on france.tv">}}
+At 10 years old, Paul is a perfectly normal kid! Except that... whenever an adult says the words "When I was your age…" Paul is instantly transported back to the time when that person was 10 years old too!
+<br>
+*© Monello Productions | France Télévisions* {{< /feature >}}
 {{< /feature-grid >}}
