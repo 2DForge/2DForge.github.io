@@ -6,3 +6,4 @@ public/
 *.af~lock~
 
 # files
+DS_Store
