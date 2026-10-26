@@ -1,6 +1,6 @@
 ---
 title: "Un blog tech dédié à l'animation 2D"
-heroCaption: "Bienvenu sur 2D FORGE" # eyebrow above the title; defaults to the author name
+heroCaption: "Bienvenue sur 2D FORGE" # eyebrow above the title; defaults to the author name
 heroLead: "Automatisation | Scripting | Compositing | Pipeline"
 showTitle: false 
 feature: "img/feature.webp"
