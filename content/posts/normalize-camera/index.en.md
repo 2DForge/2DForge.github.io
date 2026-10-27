@@ -3,7 +3,7 @@ date: '2026-08-26T17:09:09+02:00'
 draft: false
 title: 'Camera normalisation'
 tags: ['Toon Boom', 'Harmony']
-categories: ['script']
+categories: ['Script']
 keywords: ['Toon Boom', 'Harmony']
 description: 'pour SEO'
 summary: "In a Storyboard Pro > Harmony workflow, storyboard artists rarely have the time to ensure consistent Z-values for their cameras. For instance, shots that are ostensibly the same type of close-up might end up with vastly different camera Z-values (e.g., 12, 5, 0, -3.65, etc.). While this may have no apparent visual impact, standardizing these Z-values is technically highly beneficial. From box-anim, line thickness to compositing ; everyone gains from it! Long live camera normalization :)"

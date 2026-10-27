@@ -3,7 +3,7 @@ date: '2026-08-26T17:09:09+02:00'
 draft: false
 title: "Assembly: a workflow for the total automation of the Harmony animation box."
 tags: ['toon boom', 'harmony', 'box']
-categories: ["pipeline", 'scripting']
+categories: ['Pipeline']
 keywords: ['animation 2D','pipeline', 'scripting', 'toon boom', 'harmony', 'build']
 description: 'pour SEO'
 summary: 'While the BoxAnim in Harmony is essential for establishing and delivering a technically solid foundation for animators, it isn’t the most glamorous part of animation. Many repetitive tasks become tedious—so, bring on the scripts.'

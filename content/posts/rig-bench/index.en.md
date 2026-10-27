@@ -3,7 +3,7 @@ date: '2026-08-26T17:09:09+02:00'
 draft: false
 title: 'Rigg benchmark'
 tags: ['Toon Boom', 'Harmony']
-categories: ['tﬂool']
+categories: ['Tool']
 keywords: ['animation 2D','compositing', 'animation 2D', 'scripting', 'toon boom', 'harmony']
 description: 'pour SEO'
 summary: "A tool for evaluating the performance of your rigs: measure render time per pose and detect the most resource-intensive nodes."

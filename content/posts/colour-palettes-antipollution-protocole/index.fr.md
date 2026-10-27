@@ -3,7 +3,7 @@ date: '2026-08-26T17:09:09+02:00'
 draft: false
 title: "Un protocole colour palettes anti pollution pour Harmony"
 tags: ['toon boom', 'harmony']
-categories: ['pipeline', 'colour palettes']
+categories: ['Pipeline', 'Colour Palettes']
 keywords: ['animation 2D', 'pipeline', 'colour palettes', 'anti pollution', 'toon boom', ]
 description: 'pour SEO'
 summary: 'Harmony permet une gestion très ouverte des colour palettes mais sans gestion fine, la pollution des "colours palettes" peut vite devenir apocalyptique ! Cette pollution a des impacts directs sur les performances du logiciel mais aussi sur le serveur qui répertoirie tous les fichiers colour palettes. Voici un protocole pout y pallier.'
