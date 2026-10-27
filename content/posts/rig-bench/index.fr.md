@@ -1,12 +1,12 @@
 ---
 date: '2026-08-26T17:09:09+02:00'
-draft: true
-title: 'template'
+draft: false
+title: 'Rigg benchmark'
 tags: ['Toon Boom', 'Harmony']
-categories: ["Compositing", '2D']
+categories: ['Outil']
 keywords: ['animation 2D','compositing', 'animation 2D', 'scripting', 'toon boom', 'harmony']
 description: 'pour SEO'
-summary: 'This is my summary'
+summary: "Un outil pour évaluer les performances de vos riggs : mesurer le temps de rendu par pose, détecter les nodes les plus lourds."
 featured: 'featured-gen.png'
 showHero: true
 heroStyle: 'background'
