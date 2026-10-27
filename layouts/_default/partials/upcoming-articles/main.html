@@ -1,7 +1,7 @@
 {{ if .Site.Params.homepage.showUpcoming | default false }}
   <section class="mt-12">
     <h2 class="text-2xl font-bold mb-6 text-neutral-800 dark:text-neutral-100">
-      {{ i18n "homepage.upcoming_articles" | default "Prochainement" }}
+      {{ i18n "shortcode.upcoming_articles" }}
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       {{ range where .Site.RegularPages "Params.upcoming" true }}
