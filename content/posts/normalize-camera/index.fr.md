@@ -3,7 +3,7 @@ date: '2026-08-26T17:09:09+02:00'
 draft: false
 title: 'Normalisation de la caméra Harmony'
 tags: ['Toon Boom', 'Harmony']
-categories: ['scripting']
+categories: ['Script']
 keywords: ['Toon Boom', 'Harmony']
 description: 'pour SEO'
 summary: "Dans un workflow Storyboard Pro > Harmony, les boarders ont rarement le temps de soigner la cohérence Z de leur caméra. Par exemple pour une même valeur gros plan, on peut avoir des plans avec une valeur Z de la caméra très différentes (12, 5, 0, -3,65 etc). Même si visuellement ça n'a apriori aucun impact, techniquement il est extrêment profitable d'homogéniser cette valeur Z. De la box-anim en passant par la line-thickness jusqu'au compositing tout le monde en profite ! Vive la normalisation de la caméra :)"
