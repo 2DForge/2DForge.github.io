@@ -55,7 +55,7 @@ Simplified operating diagram
 Main TPL of the automation, it contains a *Peg* node whose x/y position values are controlled via a *Master-Controller* which allows you to choose both the orientation and control the size of the *rimlight*. By default, you must place the cursor on the edge of the *Master-Controller* to obtain a standardized and consistent size. By moving the cursor closer to the center, you can decrease the size of the *rimlight* which was used occasionally.
 The second important node is the *HighLight* node which manages the colorimetry for all the *rimlights* of the assets, by linking the *Radius*, *color Red* / *Green* / *Blue* / *Alpha*, *Intensity* functions to the *HighLight* node of each asset.
 
-![How TPL RIMLIGHT-CTRL works](TPL-RIMLIGHT-CTRL.png)
+![How TPL RIMLIGHT-CTRL works](TPL-RIMLIGHT-CTRL.webp)
 
 ### Master Controller
 The *Master-Controller*'s mission is to choose the light source according to the plan. A simple *grid-wizard* with 4 points does the trick, each angle representing the classic up/down/left/right light sources. The direction of the light source is established based on that of the *background*.
@@ -86,8 +86,8 @@ value = -scale * angl
 For an expression to retrieve the *scale_y* information from a *PEG* node, you must first declare the *scale_y* function in the *XSheet* (create Bézier) and, of course, reconnect it to the *scale_y* function of that same *PEG* node. {{< /alert >}}
 </div>
 
-![Declaring the scale_y function as Bézier in Toon Boom Harmony](scaleYbezier.png)
-![Connecting an XSheet column to a Peg attribute in Toon Boom Harmony](linkToBezier.png)
+![Declaring the scale_y function as Bézier in Toon Boom Harmony](scaleYbezier.webp)
+![Connecting an XSheet column to a Peg attribute in Toon Boom Harmony](linkToBezier.webp)
 
 <div class="mt-6">
 
@@ -122,17 +122,17 @@ Two outputs:
 
 Finally, the *RIMLIGHT_G* node has its own properties to flip the rimlight and activate the intersection if present (for OpenGL preview purposes). *Other options have been added over time to address recurring specific use cases*.
 
-![rimlights matte](rimlight-matte-display.png)
-![Rim light node inputs and outputs](rimlight-node-groupe.png)
+![rimlights matte](rimlight-matte-display.webp)
+![Rim light node inputs and outputs](rimlight-node-groupe.webp)
 
 #### Auto-Offset Peg Node
 The *position_x* and *position_y* values ​​are linked to the previously declared expressions.
 
-![Peg auto-offset linked via expressions](expression-positions.png)
+![Peg auto-offset linked via expressions](expression-positions.webp)
 
 #### HighLight Node
 The *Radius*, *Red* / *Green* / *Blue* / *Alpha* color, and *Intensity* values ​​are linked to those of the HighLight node in the TPL RIMLIGHT CTRL using the ***Paste Function Link*** function.
-![How to link functions between two HighLight nodes](LinkHighLight.png)
+![How to link functions between two HighLight nodes](LinkHighLight.webp)
 
 ### Colorimetry
 The *HighLight_BODY* node generating the rimlight is set to ***Multiplicative*** mode. This mode offers two advantages:
@@ -142,9 +142,9 @@ The *HighLight_BODY* node generating the rimlight is set to ***Multiplicative***
 <div class="mt-6">
 
 However, *Multiplicative* mode also has a drawback: the colors calculated by the *HighLight_BODY* node are precisely because of the ***multiplicative***, the darker a color is, the less it is affected, and conversely, the lighter a color is, the more it is affected. To normalize these values, a "curves" node takes the asset's colors as input and adjusts the RGB values—which serve as a matte (LUMA_MATTE node: *greyscale* + *Matte Output = true*)—to be subtracted from the generated matte, thereby weighting the effect.
-![rimlight matte weighting](rimlight-matte-weighting-schema.png)
+![rimlight matte weighting](rimlight-matte-weighting-schema.webp)
 By comparing the output of a "display" node placed under the original matte versus the matte corrected by the "curves" node, one can clearly distinguish the areas that have been weighted (particularly the highlights, to prevent them from "blowing out").
-![rimlight matte weighting](Origin-Matte-Corrected-Matte.png)
+![rimlight matte weighting](Origin-Matte-Corrected-Matte.webp)
 
 </div>
 <div class="mt-6">
@@ -161,14 +161,14 @@ To customize the result, rather than modifying RGB values ​​globally, the R,
 Example using the Primerose-2020 asset
 {{</lead>}}
 With the "curves" node using its default preset, the rimlight is too pronounced on the hair and skin, but insufficient on the T-shirt. By analyzing each RGB channel, it is possible to determine which channel needs adjustment to either lower or raise the level.
-![Default Primerose rimlight](Primerose-rimlight-default-EN.png)
-![Original RGB channels](Primerose-2020-RVB-Origin.png)
+![Default Primerose rimlight](Primerose-rimlight-default-EN.webp)
+![Original RGB channels](Primerose-2020-RVB-Origin.webp)
 Applying new settings channel by channel modifies the luma of the matte subtracted from the generated rimlight matte. Since the difference occurs primarily in the *Green channel*, this channel is adjusted to increase the luma value on the hair and lower the final luma value for the T-shirt. The Red channel is flattened to 1 to compensate for luma loss caused by the Green channel modification, while the Blue channel is left unchanged, as it has no impact on the yellow/orange colors here.
-![Modified Red channel](Primerose-Red.png)
-![Modified Green channel](Primerose-Green.png)
-![Modified Blue channel](Primerose-Blue.png)
-![Modified RGB channels](Primerose-2020-RVB-modified.png)
-![Modified Primerose rimlight](Primerose-rimlight-modified.png)
+![Modified Red channel](Primerose-Red.webp)
+![Modified Green channel](Primerose-Green.webp)
+![Modified Blue channel](Primerose-Blue.webp)
+![Modified RGB channels](Primerose-2020-RVB-modified.webp)
+![Modified Primerose rimlight](Primerose-rimlight-modified.webp)
 
 ### Script
 As the cornerstone of the automation process (*without which implementation would be too laborious*), the script's role is to import the RIMLIGHT_CTRL TPL and, for each asset in the scene: import a RIMLIGHT_G TPL; declare its *scale_y* value; declare the two expressions (one for *position_x* and one for *position_y*) and link them to the rimlight's *Auto Offset* peg; link the *Radius*, *color Red* / *Green* / *Blue* / *Alpha*, and *Intensity* values ​​to the *HighLight_BODY* node; and finally, select the correct *curves* node. <div class="mt-8">

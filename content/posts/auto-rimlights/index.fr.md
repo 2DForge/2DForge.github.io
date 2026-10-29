@@ -7,7 +7,7 @@ categories : ["compositing"]
 keywords : ['compositing', 'animation 2D', 'scripting', 'toon boom', 'harmony', 'rimlight', 'master controller', 'script', 'scripting']
 description : 'Découvrez comment automatiser la création et le suivi des rimlights en compositing 2D avec Toon Boom Harmony grâce aux TPLs, expressions, master controller et script.'
 summary : 'Retour d’expérience sur l’automatisation de 24 000+ rimlights dans Toon Boom Harmony pour une série TV 2D : gain de productivité (script, TPL, Master Controller et expressions).'
-featured : 'featured.jpeg'
+featured : 'featured.webp'
 showHero : true
 heroStyle : 'background'
 layoutBackgroundBlur : true
@@ -87,8 +87,8 @@ Afin qu'une expression puisse récupérer l'information *scale_y* d'un node *PEG
 {{< /alert >}}
 </div>
 
-![Déclaration de la fonction scale_y comme Bézier dans Toon Boom Harmony](scaleYbezier.png)
-![Connexion d'une colonne XSheet à un Peg attribut dans Toon Boom Harmony](linkToBezier.png)
+![Déclaration de la fonction scale_y comme Bézier dans Toon Boom Harmony](scaleYbezier.webp)
+![Connexion d'une colonne XSheet à un Peg attribut dans Toon Boom Harmony](linkToBezier.webp)
 
 <div class="mt-6">
 
@@ -123,17 +123,17 @@ Deux sorties :
 
 Enfin le node *RIMLIGHT_G* a ses propres *properties* pour flipper la rimlight et activer l'intersection si présente (pour une question de préviz openGL). *D'autres options ont été rajoutées au fur et à mesure de cas particulier récurrents*.
 
-![rimlights matte](rimlight-matte-display.png)
-![Input Outuput du node rimlight](rimlight-node-groupe.png)
+![rimlights matte](rimlight-matte-display.webp)
+![Input Outuput du node rimlight](rimlight-node-groupe.webp)
 
 #### Node Peg Auto-Offset
 Les valeurs *position_x* & *position_y* sont liées aux expressions déclarées précédemment.
 
-![Peg auto offest lié par expressions](expression-positions.png)
+![Peg auto offest lié par expressions](expression-positions.webp)
 
 #### Node HighLight
 Les valeurs *Radius*, *color Red* / *Green* / *Blue* / *Alpha*, *Intensity* sont réliées à celles du node HighLight de TPL RIMLIGHT CTRL grâce à la fonction ***Paste Function Link***.
-![Comment lier les functions entre deux nodes HighLight](LinkHighLight.png)
+![Comment lier les functions entre deux nodes HighLight](LinkHighLight.webp)
 
 ### Colorimétrie
 Le node *HighLight_BODY* qui génère la rimlight est paramétré en ***Multiplicative***. Ce mode a 2 avantages : 
@@ -143,9 +143,9 @@ Le node *HighLight_BODY* qui génère la rimlight est paramétré en ***Multipli
 <div class="mt-6">
 
 Mais le mode *Multiplicative* a aussi un inconvénient : les couleurs calculées par le node *HighLight_BODY* se faisant justement par ***multiplication***, plus une couleur est foncée moins elle est affectée et inversement plus une couleur est claire plus elle est affectée. Pour homogénéiser ces valeurs, un node curves qui prend en entrée les couleurs de l'asset rectifie ses valeurs RBG qui sont utilisées comme *matte* (node LUMA_MATTE =  *greyscale* + *Matte Ouput = true*) pour être injectée en soustraction du matte généré pour venir pondérer l'effet.
-![rimlight matte pondération](rimlight-matte-weighting-schema.png)
+![rimlight matte pondération](rimlight-matte-weighting-schema.webp)
 En comparant l'affichage un node *display* sous le matte d'origine et sous celui du matte corrigé par le node *curves*, on voit distinguement les zones du matte qui ont été pondérées (notamment les lumières hautes pour pas qu'elles "brûlent"). 
-![rimlight matte pondération](Origin-Matte-Corrected-Matte.png)
+![rimlight matte pondération](Origin-Matte-Corrected-Matte.webp)
 
 </div>
 <div class="mt-6">
@@ -162,14 +162,14 @@ Pour personnaliser le résultat, au lieu de modifier les valeurs RGB de façon g
 Exemple avec l'asset Primerose-2020
 {{</lead>}}
 Avec le node *curves* et son préset par défaut, la rimlight est trop prononcée sur la chevelure, la peau et pas assez sur son T-shirt. En analysant chaque canal RVB, il est possible de voir quel canal il faux modifier pour soit baisser ou soit augmenter le niveau.
-![Primerose rimlight par défaut](Primerose-rimlight-default-FR.png)
-![Canaux RVB originaux](Primerose-2020-RVB-Origin.png)
+![Primerose rimlight par défaut](Primerose-rimlight-default-FR.webp)
+![Canaux RVB originaux](Primerose-2020-RVB-Origin.webp)
 En appliquant de nouveaux réglages canal par canal, on modifie la luma du matte soustrait au matte de la rimlight généré. La différence se faisant principalement sur le *canal Green* c'est clui-ci qui est modifié pour augmenter la valeur luma sur les cheveux et baisser la valeur luma finale pour le T-Shirt. Le canal Red est aplati à 1 pour récupérer les pertes de luma dû à la modification du canal Green et le canal Blue est laisser tel quel n'ayant ici aucun incidence sur les couleurs jaunes/oranges.
-![Canal Red modifié](Primerose-Red.png)
-![Canal Green modifié](Primerose-Green.png)
-![Canal Blue modifié](Primerose-Blue.png)
-![Canaux RVB modifiés](Primerose-2020-RVB-modified.png)
-![Primerose rimlight modifiée](Primerose-rimlight-modified.png)
+![Canal Red modifié](Primerose-Red.webp)
+![Canal Green modifié](Primerose-Green.webp)
+![Canal Blue modifié](Primerose-Blue.webp)
+![Canaux RVB modifiés](Primerose-2020-RVB-modified.webp)
+![Primerose rimlight modifiée](Primerose-rimlight-modified.webp)
 
 ### Script
 Pierre angulaire de l'automatisation (*sans qui elle serait trop laborieuse à mettre en place*) un script a pour rôle d'importer le TPL RIMLIGHT_CTRL et pour chaque asset présent dans la scène : importer un TPL RIMLIGHT_G, déclarer sa valeur *scale_y* , déclarer les 2 expressions (une pour *position_x* et une pour *position_y*) puis les lier au peg *Auto Offset* de la rimlight, lier les valeurs *Radius*, *color Red* / *Green* / *Blue* / *Alpha*, *Intensity* au node *HighLight_BODY* et enfin sélectioner le bon node *curves*.
