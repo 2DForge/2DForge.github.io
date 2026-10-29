@@ -17,7 +17,7 @@ title = "2D FORGE"
 [params.author]
   name = "Benjamin Bourreau"
   email = "bourreaubenjamin@gmail.com"
-  image = "/img/avatar.webp"
+  image = "img/avatar.webp"
   imageQuality = 96
   headline = "TD | superviseur | 2D animation"
   bio = "Seasoned 2D Technical Director in animation: I love optimizing workflows and pipelines."
