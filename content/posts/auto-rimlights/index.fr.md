@@ -82,7 +82,7 @@ value = -scale * angl
 ```
 
 <div class="mt-6">
-{{< alert icon="triangle-exclamation" cardColor="#FC0071" iconColor="#1d3557" textColor="#f1faee" >}}
+{{< alert icon="triangle-exclamation" cardColor="#C60071" iconColor="#1d3557" textColor="#f1faee" >}}
 Afin qu'une expression puisse récupérer l'information *scale_y* d'un node *PEG*, il faut décalarer au préalable la fonction *scale_y* dans la *XSheet* (create Bézier) et évidemment la reconnecter à la fonction *scale_y* de ce même node *PEG*.
 {{< /alert >}}
 </div>
@@ -92,7 +92,7 @@ Afin qu'une expression puisse récupérer l'information *scale_y* d'un node *PEG
 
 <div class="mt-6">
 
-{{< alert icon="circle-info" cardColor="#FC0071" iconColor="#1d3557" textColor="#f1faee" >}}
+{{< alert icon="circle-info" cardColor="#C60071" iconColor="#1d3557" textColor="#f1faee" >}}
 La fonction mathématique ***Math.atan*** permet d'avoir un calcul non linéaire afin que l'offset de la rimlight augmente moins vite que le scale de l'asset. Important : ***Math.atan*** n'est pertinente que parce que la taille par défaut des assets est très grande, de telle manière que tout asset importé ont une valeur de ***scale < 1***.
 {{< /alert >}}
 
@@ -100,7 +100,7 @@ La fonction mathématique ***Math.atan*** permet d'avoir un calcul non linéaire
 
 <div class="mt-6">
 
-{{< alert icon="circle-info" cardColor="#FC0071" iconColor="#1d3557" textColor="#f1faee" >}}
+{{< alert icon="circle-info" cardColor="#C60071" iconColor="#1d3557" textColor="#f1faee" >}}
 Le paramètre ***currentFrame*** permet d'adapter dynamiquement la taille de l'offset en fonction de la valeur scale de l'asset à chaque frame du plan. Si l'asset grossit/diminue durant le plan, l'offset est automatiquement recalculé pour s'adapter (c'est toute la beauté des expressions :wink:).  
 {{< /alert >}}
 
